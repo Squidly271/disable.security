@@ -35,7 +35,8 @@ $(function() {
 	if ( typeof caPluginUpdateCheck === "function" ) {
 		caPluginUpdateCheck("disable.security.plg",{name:"Disable Security Mitigations"});
 	}
-}
+});
+
 function enableMitigations() {
 	$.post("/plugins/disable.security/scripts/enableMitigations.php",{},function(data) {
 		if (data) {
