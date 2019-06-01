@@ -14,6 +14,8 @@ $mds = exec("cat /boot/syslinux/syslinux.cfg | grep 'mds=off'");
 $nospec_store = exec("cat /boot/syslinux/syslinux.cfg | grep 'nospec_store_bypass_disable'");
 $no_stf = exec("cat /boot/syslinux/syslinux.cfg | grep 'no_stf_barrier'");
 $output = $pti | $spectre | $l1tf | $mds | $nospec_store | $no_stf;
+
+$reboot = is_file("/tmp/disable.mitigations.reset");
 ?>
 
 <font size='5'>Disabling Spectre, Meltdown and Zombieland (MDS) mitigations may improve your CPU speed.  But these are security risks for certain workloads, and disabling the mitigations is purely all at your own risk.</font>
@@ -23,7 +25,11 @@ $output = $pti | $spectre | $l1tf | $mds | $nospec_store | $no_stf;
 if ($output) echo "<font color='red'>Mitigation(s) disabled</font>"; else echo "<font color='green'>Mitigation(s) enabled</font>";
 ?>
 <br><br>
-Status:</font><br><br>
+Status:</font>
+<?if ($reboot):?>
+(will be updated after rebooting the server)
+<?endif;?>
+<br><br>
 <table><?=$mitigations?></table>
 <?if ($output):?>
 <input type='button' onclick='enableMitigations();' value='Enable Mitigations'>
@@ -53,7 +59,7 @@ function disableMitigations() {
 }
 </script>
 <?
-if ( is_file("/tmp/disable.mitigations.reset") ):
+if ($reboot):
 ?>
 <style>
 .reboot_notice{position:fixed;top:1px;left:0;}

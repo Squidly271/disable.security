@@ -3,7 +3,7 @@
 <!ENTITY name      "disable.security">
 <!ENTITY author    "Andrew Zawadzki">
 <!ENTITY version   "2019.06.01">
-<!ENTITY md5       "1a86631f168e4c03f6ac0bf8fd917e7a">
+<!ENTITY md5       "5550b96d338e197c3ce5cdaf29ebbeea">
 <!ENTITY launch    "UNRAID-OS/disable.security">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/disable.security">
