@@ -18,7 +18,7 @@ $output = $pti | $spectre | $l1tf | $mds | $nospec_store | $no_stf;
 $reboot = is_file("/tmp/disable.mitigations.reset");
 ?>
 
-<font size='5'>Disabling Spectre, Meltdown and Zombieland (MDS) mitigations may improve your CPU speed.  But these are security risks for certain workloads, and disabling the mitigations is purely all at your own risk.</font>
+<font size='5'>Disabling Spectre, Meltdown and Zombieload (MDS) mitigations may improve your CPU speed.  But these are security risks for certain workloads, and disabling the mitigations is purely all at your own risk.</font>
 <br><br><br>
 <font size='3'>
 <?

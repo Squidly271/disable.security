@@ -14,7 +14,7 @@ foreach ($syslinux as $index => $line) {
 				for ( $i = $index; $i < count($syslinux); $i++ ) {
 					if ( startsWith(trim($syslinux[$i]),"append") && ! $found) {
 						$found = true;
-						$newsyslinux[$i] = rtrim($syslinux[$i])." pti=off spectre_v2=off l1tf=off nospec_store_bypass_disable no_stf_barrier";
+						$newsyslinux[$i] = rtrim($syslinux[$i])." pti=off spectre_v2=off l1tf=off mds=off nospec_store_bypass_disable no_stf_barrier";
 						break;
 					}
 				}
