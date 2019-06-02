@@ -10,18 +10,15 @@ $newsyslinux = $syslinux;
 foreach ($syslinux as $index => $line) {
 	if ( startsWith(trim($line),"menu") && strpos($line,"default") ) {
 		for ( $i = $index; $i < count($syslinux); $i++ ) {
-			if ( startsWith(trim($line),"menu") && strpos($line,"default") ) {
-				for ( $i = $index; $i < count($syslinux); $i++ ) {
-					if ( startsWith(trim($syslinux[$i]),"append") && ! $found) {
-						$found = true;
-						$newsyslinux[$i] = rtrim($syslinux[$i])." pti=off spectre_v2=off l1tf=off mds=off nospec_store_bypass_disable no_stf_barrier";
-						break;
-					}
-				}
+			if ( startsWith(trim($syslinux[$i]),"append") && ! $found) {
+				$found = true;
+				$newsyslinux[$i] = rtrim($syslinux[$i])." pti=off spectre_v2=off l1tf=off mds=off nospec_store_bypass_disable no_stf_barrier";
+				break;
 			}
 		}
 	}
 }
+
 file_put_contents("/boot/syslinux/syslinux.cfg",implode("\n",$newsyslinux));
 file_put_contents("/tmp/disable.mitigations.reset","blah");
 echo "hi";
