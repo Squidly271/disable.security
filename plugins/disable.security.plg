@@ -52,6 +52,8 @@ The 'remove' script.
 -->
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
+echo "Re-enabling mitigations"
+/usr/local/emhttp/plugins/disable.security/scripts/enableMitigations.sh > /dev/null
 removepkg &name;-&version;-x86_64-1
 rm -rf &plugdir;
 rm -rf /boot/config/plugins/&name;
