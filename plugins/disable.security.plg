@@ -4,7 +4,7 @@
 <!ENTITY author    "Andrew Zawadzki / cybrnook">
 <!ENTITY version   "2019.06.02a">
 <!ENTITY md5       "a666225d02c1be06070d8ce580309590">
-<!ENTITY launch    "UNRAID-OS/DisableSecurity">
+<!ENTITY launch    "Settings/DisableSecurity">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/disable.security">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/plugins/&name;.plg">
