@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "disable.security">
 <!ENTITY author    "Andrew Zawadzki / cybrnook">
-<!ENTITY version   "2019.06.01b">
-<!ENTITY md5       "ce1738d7431fddfd1ce73ca68ed4bd2d">
+<!ENTITY version   "2019.06.01c">
+<!ENTITY md5       "6567fda1a94d6d5c13f6a40d5407d7be">
 <!ENTITY launch    "UNRAID-OS/DisableSecurity">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/disable.security">
