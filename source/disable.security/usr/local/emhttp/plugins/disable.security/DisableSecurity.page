@@ -1,6 +1,6 @@
 Menu="UNRAID-OS"
 Title="Mitigation Settings"
-Icon="warning"
+Icon="bolt"
 ---
 <?
 foreach (glob("/sys/devices/system/cpu/vulnerabilities/*") as $vulnerability) {
