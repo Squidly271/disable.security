@@ -20,6 +20,6 @@ foreach ($syslinux as $index => $line) {
 }
 
 file_put_contents("/boot/syslinux/syslinux.cfg",implode("\n",$newsyslinux));
-file_put_contents("/tmp/disable.mitigations.reset","blah");
+file_put_contents("/tmp/disable.mitigations.reset","disabled");
 echo "disabled";
 ?>
