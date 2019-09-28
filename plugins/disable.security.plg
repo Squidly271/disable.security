@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "disable.security">
 <!ENTITY author    "Andrew Zawadzki / cybrnook">
-<!ENTITY version   "2019.06.02a">
-<!ENTITY md5       "a666225d02c1be06070d8ce580309590">
+<!ENTITY version   "2019.09.28">
+<!ENTITY md5       "d30f37f3b2d50a1d1d935fcf7b8eddab">
 <!ENTITY launch    "Settings/DisableSecurity">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/disable.security">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="bolt" min="6.7.0">
 
 <CHANGES>
+###2019.09.28
+- Use simpler disables when running unRaid 6.8+
+
 ###2019.06.02
 - Initial Release
 </CHANGES>
@@ -35,6 +38,20 @@ The 'source' file.
 <!--
 The 'post-install' script
 -->
+<FILE Run="/usr/bin/php">
+<INLINE>
+<![CDATA[
+<?PHP
+$unraid = parse_ini_file("/etc/unraid-version");
+if ( version_compare("6.7.9",$unraid['version'],"<") ) {
+  $syslinux = file_get_contents("/boot/syslinux/syslinux.cfg");
+	$syslinux = str_replace("pti=off spectre_v2=off l1tf=off mds=off nospec_store_bypass_disable no_stf_barrier","mitigations=off",$syslinux);
+	file_put_contents("/boot/syslinux/syslinux.cfg",$syslinux);
+}
+]]>
+</INLINE>
+</FILE>
+
 <FILE Run="/bin/bash">
 <INLINE>
 echo ""

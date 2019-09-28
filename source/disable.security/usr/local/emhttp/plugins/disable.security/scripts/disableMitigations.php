@@ -5,6 +5,8 @@ function startsWith($haystack, $needle) {
 	return $needle === "" || strripos($haystack, $needle, -strlen($haystack)) !== FALSE;
 }
 
+$unraid = parse_ini_file("/etc/unraid-version");
+
 $syslinux = file("/boot/syslinux/syslinux.cfg",FILE_IGNORE_NEW_LINES);
 $newsyslinux = $syslinux;
 foreach ($syslinux as $index => $line) {
@@ -12,7 +14,8 @@ foreach ($syslinux as $index => $line) {
 		for ( $i = $index; $i < count($syslinux); $i++ ) {
 			if ( startsWith(trim($syslinux[$i]),"append") && ! $found) {
 				$found = true;
-				$newsyslinux[$i] = rtrim($syslinux[$i])." pti=off spectre_v2=off l1tf=off mds=off nospec_store_bypass_disable no_stf_barrier";
+				$string = version_compare("6.7.9",$unraid['version'],">") ? " pti=off spectre_v2=off l1tf=off mds=off nospec_store_bypass_disable no_stf_barrier" : " mitigations=off";
+				$newsyslinux[$i] = rtrim($syslinux[$i]).$string;
 				break;
 			}
 		}

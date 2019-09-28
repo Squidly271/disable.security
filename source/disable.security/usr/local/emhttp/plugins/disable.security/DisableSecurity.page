@@ -13,7 +13,8 @@ $l1tf = exec("cat /proc/cmdline | grep 'l1tf=off'");
 $mds = exec("cat /proc/cmdline | grep 'mds=off'");
 $nospec_store = exec("cat /proc/cmdline | grep 'nospec_store_bypass_disable'");
 $no_stf = exec("cat /proc/cmdline | grep 'no_stf_barrier'");
-$output = $pti | $spectre | $l1tf | $mds | $nospec_store | $no_stf;
+$all_mitigations = exec("cat /proc/cmdline | grep 'mitigations=off'");
+$output = $pti | $spectre | $l1tf | $mds | $nospec_store | $no_stf | $all_mitigations;
 
 $reboot = @file_get_contents("/tmp/disable.mitigations.reset");
 if ($reboot) {
