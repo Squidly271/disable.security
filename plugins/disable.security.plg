@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "disable.security">
 <!ENTITY author    "Andrew Zawadzki / cybrnook">
-<!ENTITY version   "2019.09.28">
-<!ENTITY md5       "d30f37f3b2d50a1d1d935fcf7b8eddab">
+<!ENTITY version   "2019.10.27">
+<!ENTITY md5       "181a9d3763aa0e99e26c7182da34c98b">
 <!ENTITY launch    "Settings/DisableSecurity">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "Squidly271/disable.security">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="bolt" min="6.7.0">
 
 <CHANGES>
+###2019.10.27
+- Fix font size on plugins tab
+
 ###2019.09.28
 - Use simpler disables when running unRaid 6.8+
 
