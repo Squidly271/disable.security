@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name "disable.security">
 <!ENTITY author "Andrew Zawadzki / cybrnook">
-<!ENTITY version "2019.12.05">
-<!ENTITY md5 "4834d749757ba120b80e380134126f4a">
+<!ENTITY version "2020.01.18">
+<!ENTITY md5 "c4d3aa0bd56dad10ad0e116b4d02eee7">
 <!ENTITY launch "Settings/DisableSecurity">
 <!ENTITY plugdir "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github "Squidly271/disable.security">
@@ -11,6 +11,9 @@
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="bolt" min="6.7.0" support="https://forums.unraid.net/topic/80563-plugin-disable-security-mitigations/">
   <CHANGES>
+###2020.01.18
+- Utilize new system for reboot required notifications
+
 ###2019.12.05
 - Determine mitigation syntax via kernel version, not unRaid version.
 - Depending upon the circumstances, a reboot *may* be required after installing this update
