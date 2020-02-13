@@ -16,6 +16,14 @@ $no_stf = exec("cat /proc/cmdline | grep 'no_stf_barrier'");
 $all_mitigations = exec("cat /proc/cmdline | grep 'mitigations=off'");
 $output = $pti | $spectre | $l1tf | $mds | $nospec_store | $no_stf | $all_mitigations;
 
+if ( ! is_file("/tmp/disable.mitigations.syslinux.cfg") ) {
+	copy("/boot/syslinux/syslinux.cfg","/tmp/disable.mitigations.syslinux.cfg");
+}
+
+if ( trim(file_get_contents("/tmp/disable.mitigations.syslinux.cfg")) !== trim(file_get_contents("/boot/syslinux/syslinux.cfg")) ) {
+	$rebootRequired = true;
+}
+
 $reboot = @file_get_contents("/tmp/disable.mitigations.reset");
 if ($reboot) {
 	$output = ($reboot == "disabled");
@@ -71,7 +79,7 @@ function disableMitigations() {
 }
 </script>
 <?
-if ($reboot):
+if ($rebootRequired):
 ?>
 <script>
 	if (typeof addRebootNotice === "function") {
