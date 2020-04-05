@@ -3,6 +3,16 @@ Title="Mitigation Settings"
 Icon="bolt"
 ---
 <?
+function tr($string,$ret=false) {
+	if ( function_exists("_") )
+		$string =  _($string);
+	if ( $ret )
+		return $string;
+	else
+		echo $string;
+}
+
+
 foreach (glob("/sys/devices/system/cpu/vulnerabilities/*") as $vulnerability) {
 	$mitigations .= "<tr><td>".basename($vulnerability)."</td><td>".exec("cat '$vulnerability'")."</td></tr>";
 }
@@ -16,45 +26,38 @@ $no_stf = exec("cat /proc/cmdline | grep 'no_stf_barrier'");
 $all_mitigations = exec("cat /proc/cmdline | grep 'mitigations=off'");
 $output = $pti | $spectre | $l1tf | $mds | $nospec_store | $no_stf | $all_mitigations;
 
-if ( ! is_file("/tmp/disable.mitigations.syslinux.cfg") ) {
-	copy("/boot/syslinux/syslinux.cfg","/tmp/disable.mitigations.syslinux.cfg");
-}
-
-if ( trim(file_get_contents("/tmp/disable.mitigations.syslinux.cfg")) !== trim(file_get_contents("/boot/syslinux/syslinux.cfg")) ) {
-	$rebootRequired = true;
-}
-
 $reboot = @file_get_contents("/tmp/disable.mitigations.reset");
 if ($reboot) {
 	$output = ($reboot == "disabled");
 }
+$message = $reboot == "disabled" ? tr("Mitigations will be disabled after a reboot",true) : tr("Mitigations will be enabled after a reboot",true);
 ?>
 
-<font size='5'><font color='orange'><i class='fa fa-warning'></i></font>&nbsp;&nbsp;Disabling Spectre, Meltdown and Zombieload (MDS) mitigations may improve your CPU speed.  But these are security risks for certain workloads, and disabling the mitigations is purely all at your own risk.</font>
+<font size='5'><font color='orange'><i class='fa fa-warning'></i></font>&nbsp;&nbsp;<?tr("Disabling Spectre, Meltdown and Zombieload (MDS) mitigations may improve your CPU speed.  But these are security risks for certain workloads, and disabling the mitigations is purely all at your own risk.");?></font>
 <br><br><br>
 <font size='3'>
 <?
 if ($reboot) 
-	echo "<font color='orange'>Mitigations will be $reboot after a reboot</font>";
+	echo "<font color='orange'>$message</font>";
 else {
 	if ($output)
-		echo "<font color='orange'>Mitigation(s) currently disabled</font>";
+		echo "<font color='orange'>".tr("Mitigations currently disabled",true)."</font>";
 	else
-		echo "<font color='green'>Mitigation(s) currently enabled</font>";
+		echo "<font color='green'>".tr("Mitigations currently enabled",true)."</font>";
 }
 ?>
 <br><br>
-Status:</font>
+<?tr("Status:");?></font>
 <?if ($reboot):?>
-(will be updated after rebooting the server)
+<?tr("will be updated after rebooting the server");?>
 <?endif;?>
 <br><br>
 <table><?=$mitigations?></table>
 
 <?if ($output):?>
-<input type='button' onclick='$(this).hide();enableMitigations();' value='Enable Mitigations'>
+<input type='button' onclick='$(this).hide();enableMitigations();' value='<?tr("Enable Mitigations");?>'>
 <?else:?>
-<input type='button' onclick='$(this).hide();disableMitigations();' value='Disable Mitigations'>
+<input type='button' onclick='$(this).hide();disableMitigations();' value='<?tr("Disable Mitigations");?>'>
 <?endif;?>
 <script>
 $(function() {
@@ -79,13 +82,13 @@ function disableMitigations() {
 }
 </script>
 <?
-if ($rebootRequired):
+if ($reboot):
 ?>
 <script>
 	if (typeof addRebootNotice === "function") {
-		addRebootNotice("Disable Security Mitigations: A Reboot Is Required For Changes To Take Effect");
+		addRebootNotice("<?tr("Disable Security Mitigations: A Reboot Is Required For Changes To Take Effect");?>");
 	} else {
-		addBannerWarning("A Reboot Is Required For Changes To Take Effect");
+		addBannerWarning("<?tr("A Reboot Is Required For Changes To Take Effect");?>");
 	}
 </script>
 
