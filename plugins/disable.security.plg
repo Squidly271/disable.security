@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name "disable.security">
 <!ENTITY author "Andrew Zawadzki / cybrnook">
-<!ENTITY version "2020.04.05">
-<!ENTITY md5 "6a008f4b30de26871418a12f6b8b8e16">
+<!ENTITY version "2021.03.10">
+<!ENTITY md5 "bfc366b5818b0103686d7f5bf46045a3">
 <!ENTITY launch "Settings/DisableSecurity">
 <!ENTITY plugdir "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github "Squidly271/disable.security">
@@ -11,6 +11,9 @@
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="bolt" min="6.7.0" support="https://forums.unraid.net/topic/80563-plugin-disable-security-mitigations/">
   <CHANGES>
+###2021.03.10
+- Permission fix
+
 ###2020.04.05
 - Multi language support
 
