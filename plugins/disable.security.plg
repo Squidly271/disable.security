@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name "disable.security">
 <!ENTITY author "Andrew Zawadzki / cybrnook">
-<!ENTITY version "2021.03.10">
-<!ENTITY md5 "bfc366b5818b0103686d7f5bf46045a3">
+<!ENTITY version "2023.02.02">
+<!ENTITY md5 "bdccf4bb6f6b0698455a6f36b730fcff">
 <!ENTITY launch "Settings/DisableSecurity">
 <!ENTITY plugdir "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github "Squidly271/disable.security">
@@ -11,6 +11,9 @@
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="bolt" min="6.7.0" support="https://forums.unraid.net/topic/80563-plugin-disable-security-mitigations/">
   <CHANGES>
+###2023.02.02
+- PHP8 compliance
+
 ###2021.03.10
 - Permission fix
 

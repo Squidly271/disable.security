@@ -12,7 +12,7 @@ function tr($string,$ret=false) {
 		echo $string;
 }
 
-
+$mitigations = "";
 foreach (glob("/sys/devices/system/cpu/vulnerabilities/*") as $vulnerability) {
 	$mitigations .= "<tr><td>".basename($vulnerability)."</td><td>".exec("cat '$vulnerability'")."</td></tr>";
 }

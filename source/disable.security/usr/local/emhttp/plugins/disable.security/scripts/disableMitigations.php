@@ -9,6 +9,7 @@ $kernelVersion = exec("uname -r");
 
 $syslinux = file("/boot/syslinux/syslinux.cfg",FILE_IGNORE_NEW_LINES);
 $newsyslinux = $syslinux;
+$found = false;
 foreach ($syslinux as $index => $line) {
 	if ( startsWith(trim($line),"menu") && strpos($line,"default") ) {
 		for ( $i = $index; $i < count($syslinux); $i++ ) {
